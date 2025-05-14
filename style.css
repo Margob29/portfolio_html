@@ -1,0 +1,301 @@
+/* @font-face {
+    font-family: "Ofont";;
+    src: url('fonts/Ofont/Ofont-Regular.ttf') format('truetype')
+} */
+@font-face{
+    font-family: "Kodchasan";
+    src: url('fonts/Kodchasan/Kodchasan-Regular.ttf') format('truetype')
+}
+@font-face{
+    font-family: 'Sniglet';
+    src: url('fonts/Sniglet/Sniglet-Regular.ttf') format('truetype')
+}
+/* ===================================================== */
+/*                       Shared                          */
+/* ===================================================== */
+body {
+    text-align: center;
+    margin: 0;
+    font-family: 'Sniglet', sans-serif;
+    color: #8B5B1A;
+}
+.body-content{ padding-top: 100px; }
+.logo-titre {
+    height: 80%;
+    margin: 2rem;
+}
+h1 {
+    font-family: 'Kodchasan', sans-serif;
+    font-size: 4rem;
+}
+h2 {
+    font-family: 'Kodchasan', sans-serif;
+    font-size: 3rem;
+    text-align: left;
+    margin-top: 0;
+    color:#446AA4
+}
+h3 {
+    font-family: 'Kodchasan', sans-serif;
+    font-size: 1.5rem;
+}
+p{
+    font-size: 1.2rem;
+    margin: 1rem;
+    text-align: left;
+}
+.btn {
+    background-color: #FFEBC3;
+    border: #8B5B1A 2px solid;
+    border-radius: 50px;
+    color: #8B5B1A;
+    padding: 15px 20px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 1.5rem;
+    font-size: 1.3rem;
+}
+a{
+    text-decoration: none;
+    color: #8B5B1A;
+}
+/* ------------------ Navbar ------------------- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    background-color: #ffebc3;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+.logo {
+    height: 40px;
+    margin-left: 10px;
+}
+.hamburger {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color:#446AA4;
+}
+.nav-links-container{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-right: 100px;
+}
+.nav-links {
+    color: #446AA4;
+    font-size: 1.2em;
+    margin: 0 30px;
+    text-decoration: none;
+}
+/* ------------------ Footer ------------------- */
+footer {
+    background-color: #ffebc3;
+    padding: 1.5rem 1.5rem;
+}
+.footer-content{ display: flex; }
+.footer-column{
+    flex: 1;
+    flex-direction: column;
+    display: flex;
+}
+h4 {
+    font-size: 1rem;
+    margin: 0;
+    margin-bottom: 1rem;
+    font-family: 'Kodchasan', sans-serif;
+}
+.footer-link{
+    text-decoration: none;
+    margin: 0.3rem;
+    color: #8B5B1A;
+}
+.logo-footer{ height: 100px; }
+.footer-column p{
+    font-size: 1rem;
+    display: inline;
+}
+.social-icon {
+    width: 18px;
+    height: 18px;
+    margin-top: 0.3rem;
+    margin-right: 0.5rem;
+}
+/* ===================================================== */
+/*                     Home Page                         */
+/* ===================================================== */
+/* ------------------ Parcours ------------------- */
+.my-path{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: stretch;
+    justify-content: start;
+    margin: 5% 10%;
+    margin-bottom: 0;
+}
+.CV{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+}
+.CV h3{
+    text-align: right;
+    color: #a83e7a;
+}
+.me-picture{ width: 60%; }
+/* ------------------ Problématiques ------------------- */
+.problems{ margin: 5% 10%; }
+.problems-window-card{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 10%;
+}
+.problems-card{
+    background-color: #446AA4;
+    color: white;
+    margin: 5px 0;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.problems-card h3{
+    margin: 0.5rem;
+    padding: 0.5rem;
+    margin-right: 1rem;
+    flex: 0 1 auto;
+}
+.problems-card span{
+    font-size: 0.8rem;
+    margin: 0.5rem;
+    position: absolute;
+    right: 0;
+}
+/* ------------------ Services ------------------- */
+.services{ margin: 5% 10%; }
+.window-card{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+}
+.card{
+    border: #8B5B1A 2px solid;
+    margin: 0.5rem;
+}
+.card-title{
+    background-color: #8B5B1A;
+    color: white;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.card-title h3{
+    margin: 0;
+    padding: 0.5rem;
+}
+.card-title span{
+    font-size: 0.8rem;
+    margin: 5px;
+    position: absolute;
+    right: 0;
+}
+/* ------------------ Bandeau ------------------- */
+.headband {
+    background-color: #446AA4;
+    padding : 1em 2em;
+    padding-bottom: 2.5em;
+    color: white;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+.text-headband { text-align: center; }
+/* ===================================================== */
+/*                      A propos                         */
+/* ===================================================== */
+.about{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 5%;
+}
+.about h2{ text-align: center; }
+.logo-parcours{
+    width: 30%;
+    margin: 0;
+    padding: 0;
+}
+/* --------------------- Formation -------------------- */
+.card-formation{ border: #a83e7a 2px solid; }
+.title-formation{ background-color: #a83e7a; }
+.highlight-text-formation{ color: black; }
+/* --------------------- Pro -------------------- */
+.card-pro{ border: #446AA4 2px solid; }
+.title-pro{ background-color: #446AA4; }
+.highlight-text-pro{ color:#a83e7a; }
+/* --------------------- Perso -------------------- */
+.about-perso{
+    margin: 0 30%;
+    margin-bottom: 50px;
+}
+.about-perso h2{ text-align: center; }
+.highlight-text{ color:#446AA4; }
+/* ===================================================== */
+/*                    Media queries                      */
+/* ===================================================== */
+@media screen and (max-width: 768px) {
+    /* -------------- Shared ---------------- */
+    h1 {
+        font-size: 250%;
+        margin: 20px;
+    }
+    h2{
+        font-size: 2rem;
+        text-align: center;
+    }
+    /* -------------- Navbar ---------------- */
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+    }
+    .hamburger { display: block;}
+    .nav-links-container {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: #FFEBC3;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        padding: 20px 0;
+    }
+    .nav-links-container.active { display: flex; }
+    /* -------------- Footer ---------------- */
+    footer{ padding-left: 10px;}
+    .footer-content{ flex-direction: column; }
+    .footer-column{ margin-bottom: 20px; }
+    /* -------------- Home Page ---------------- */
+    .logo-titre{ width: 80%; }
+    .my-path{
+        grid-template-columns: 1fr;
+        margin: 2%;
+    }
+    .problems{margin: 2%}
+    .problems-window-card{ flex-direction: column;}
+    .problems-card{ margin: 0.5rem;}
+    h3{ font-size: 120%;}
+    .services{
+        margin: 4%;
+        margin-bottom: 50px;
+    }
+    .window-card{ grid-template-columns: 1fr;}
+    .headband{padding: 1rem;}
+}
