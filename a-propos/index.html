@@ -29,7 +29,7 @@
     <div class="body-content">
         <h1>A propos de moi</h1>
         <div class="about-category">
-            <h2>Mon parcours</h2>
+            <h2 class="active">Mon parcours</h2>
             <h2>Mes compétences</h2>
         </div>
         <!--========================== Parcours ==========================-->
@@ -278,23 +278,39 @@
         <div class="skills">
             <div class="development">
                 <h2>Programmation</h2>
-                <h3>Frontend</h3>
-                <img src="../img/logos/css3.png" alt="CSS3" class="logo-skill">
-                <img src="../img/logos/html5.png" alt="HTML5" class="logo-skill">
-                <img src="../img/logos/js.png" alt="JavaScript" class="logo-skill">
-                <img src="../img/logos/react-native.png" alt="React Native" class="logo-skill">
-                <img src="../img/logos/react.png" alt="React" class="logo-skill">
-                <img src="../img/logos/ts-logo-256.png" alt="TypeScript" class="logo-skill">
-                <span>Bootstrap</span>
-                <h3>Backend</h3>
-                <img src="../img/logos/mysql.png" alt="MySQL" class="logo-skill">
-                <img src="../img/logos/php.png" alt="PHP" class="logo-skill">
-                <img src="../img/logos/nodejsStackedLight.svg" alt="NodeJS" class="logo-skill">
-                <span>ASP.net</span>
-                <h3>Autres</h3>
-                <img src="../img/logos/python-logo.png" alt="Python" class="logo-skill">
-                <img src="../img/logos/github-mark.svg" alt="GitHub" class="logo-skill">
-                <span>C# C C++ Git Unity VBA Rstudio Arduino</span>
+                <div class="development-category">
+                    <h3>Frontend</h3>
+                    <div>
+                        <img src="../img/logos/css3.png" alt="CSS3" class="logo-skill">
+                        <img src="../img/logos/html5.png" alt="HTML5" class="logo-skill">
+                        <img src="../img/logos/js.png" alt="JavaScript" class="logo-skill">
+                        <img src="../img/logos/react-native.png" alt="React Native" class="logo-skill">
+                        <img src="../img/logos/react.png" alt="React" class="logo-skill">
+                        <img src="../img/logos/ts-logo-256.png" alt="TypeScript" class="logo-skill">
+                        <img src="../img/logos/bootstrap-logo.svg" alt="Boostrap" class="logo-skill">
+                        <img src="../img/logos/WordPress-logotype-alternative.png" alt="WordPress" class="logo-skill">
+                    </div>
+                </div>
+                <div class="development-category">
+                    <h3>Backend</h3>
+                    <div>
+                        <img src="../img/logos/php.png" alt="PHP" class="logo-skill">
+                        <img src="../img/logos/mysql.png" alt="MySQL" class="logo-skill">
+                        <img src="../img/logos/nodejsStackedDark.svg" alt="NodeJS" class="logo-skill">
+                        <img src="../img/logos/dotnet-logo.png" alt=".NET" class="logo-skill">
+                    </div>
+                </div>
+                <div class="development-category">
+                    <h3>Autres</h3>
+                    <div>
+                        <img src="../img/logos/python-logo.png" alt="Python" class="logo-skill">
+                        <img src="../img/logos/github-mark.svg" alt="GitHub" class="logo-skill">
+                        <img src="../img/logos/Git-Logo-2Color.png" alt="Git" class="logo-skill">
+                        <img src="../img/logos/U_Logo_Small_Black_RGB_1C 1.png" alt="Unity" class="logo-skill">
+                        <img src="../img/logos/RStudio-Logo-Flat.png" alt="RStudio" class="logo-skill">
+                        <span>C# C C++ VBA Arduino</span>
+                    </div>
+                </div>     
             </div>
             <div class="softskills">
                 <h2>Softskills</h2>
@@ -327,11 +343,33 @@
             </div>
             <div class="others">
                 <h2>Autres</h2>
-                <div class="language">
-                    <img src="../img/drapeau_anglais.png" alt="Drapeau d'Angleterre" class="language-flag"> <h4>B2 TOEIC 2023 (885/990)</h4>
-                    <img src="../img/drapeau_espagne.png" alt="Drapeau d'Espagne" class="language-flag"> <h4>B1</h4>
+                <div class="category-others">
+                    <div>
+                        <h3>Langues</h3>
+                        <div class="language">
+                            <img src="../img/drapeau_anglais.png" alt="Drapeau d'Angleterre" class="language-flag"> <h4>B2 TOEIC 2023 (885/990)</h4>
+                            <img src="../img/drapeau_espagne.png" alt="Drapeau d'Espagne" class="language-flag"> <h4>B1</h4>
+                        </div>  
+                    </div>
+                    <div>
+                        <h3>Secourisme</h3>
+                        <div class="secourism">
+                            <h4>PSE1</h4>
+                            <p>(Premiers Secours en Equipe de niveau 1)</p>
+                        </div>
+                        <div class="secourism">
+                            <h4>BNSSA</h4>
+                            <p>(Brevet National de Sécurité et Sauvetage Aquatique)</p>
+                        </div>                       
+                    </div>
+                    <div>
+                        <h3>Montage vidéo</h3>
+                        <img src="../img/logos/davinci.png" alt="DaVinci Resolve" class="logo-skill-video">
+                        <p class="video">Vidéos de mes voyages disponibles sur <a href="https://www.youtube.com/@margobrt">ma chaîne YouTube</a></p>
+                    </div>
                 </div>
-                <p>Langues, BNSSA, PSE1, montage vidéo</p>
+                
+                <p>Figma</p>
             </div>
         </div>
     </div>
@@ -377,17 +415,11 @@
         const category = document.querySelector('.about-category').children;
         const path = document.querySelector('.path');
         const skills = document.querySelector('.skills');
-        category[0].addEventListener('click', () => {
-            path.classList.remove('inactive');
-            category[0].classList.toggle('active');
-            category[1].classList.remove('active');
-            skills.classList.remove('active');
-        });
-        category[1].addEventListener('click', () => {
+        for (let c of category) c.addEventListener('click', () => {
             skills.classList.toggle('active');
-            category[1].classList.toggle('active');
-            category[0].classList.remove('active');
             path.classList.toggle('inactive');
+            category[1].classList.toggle('active');
+            category[0].classList.toggle('active');
         });
     </script>
 </body>

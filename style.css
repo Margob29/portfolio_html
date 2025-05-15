@@ -39,6 +39,14 @@ h3 {
     font-family: 'Kodchasan', sans-serif;
     font-size: 1.5rem;
 }
+h4{
+    font-family: 'Kodchasan', sans-serif;
+    font-size: 1rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
 p{
     font-size: 1.2rem;
     margin: 1rem;
@@ -106,7 +114,7 @@ footer {
     flex-direction: column;
     display: flex;
 }
-h4 {
+footer h4 {
     font-size: 1rem;
     margin: 0;
     margin-bottom: 1rem;
@@ -154,9 +162,10 @@ h4 {
 /* ------------------ Problématiques ------------------- */
 .problems-window-card{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin: 0 10%;
     gap: 5px;
+    flex-wrap: wrap;
 }
 .problems-card{
     background-color: #446AA4;
@@ -243,12 +252,8 @@ h4 {
     border: #8B5B1A 2px solid;
 }
 /* ====================== Parcours =================== */
-.path{
-    display: flex;
-}
-.path.inactive{
-    display: none;
-}
+.path{ display: flex; }
+.path.inactive{ display: none; }
 /* --------------------- Formation -------------------- */
 .card-formation{ border: #a83e7a 2px solid; }
 .title-formation{ background-color: #a83e7a; }
@@ -265,25 +270,67 @@ h4 {
     display: flex;
     flex-direction: column;
 }
-.development, .softskills, .others{ margin: 5%; }
+.development, .softskills, .others{ margin: 2% 5%; }
 /* --------------------- Programmation -------------------- */
-.logo-skill{ height: 100px; }
+.logo-skill{
+    height: 80px;
+    margin: 0.5rem;
+}
+.development-category{
+    display: grid;
+    grid-template-columns: max(200px) 2fr;
+    margin: 40px 0;
+    padding-left: 5%;
+    gap: 5px;
+}
+.development-category h3{
+    text-align: left;
+    display: flex;
+    align-items: center;
+    color:#a83e7a;
+}
+.development-category div{
+    text-align: left;
+}
+/* --------------------- Softskills -------------------- */
+
+/* --------------------- Autres -------------------- */
+.others h2{ margin-bottom: 0;}
+.category-others{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
 .language{ 
     text-align: left;
     margin: 5%;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap:5px;
-    width: 20%
+    grid-template-columns: max(100px) 1fr;
+    gap:20px;
 }
-.language h4{
-    margin: 0;
-    display: flex;
-    align-items: center;
-}
+.language h4{ text-align: left;}
 .language-flag{ height: 30px; }
-/* --------------------- Softskills -------------------- */
-/* --------------------- Atres -------------------- */
+.secourism{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+.secourism p{ 
+    text-align: center;
+    margin: 0;
+    font-size: 1rem;
+}
+.secourism h4{ color:#a83e7a;}
+.logo-skill-video{ 
+    height: 60px;
+    margin: 0;
+}
+.video{
+    font-size: 1rem;
+    text-align: center;
+}
+.video a{text-decoration: underline;}
 /* ===================================================== */
 /*                    Media queries                      */
 /* ===================================================== */
@@ -346,9 +393,9 @@ h4 {
     .window-card{ grid-template-columns: 1fr;}
     .headband{padding: 1rem;}
     /* -------------- About ---------------- */
-    .about-category{
-        font-size: 60%;
-    }
+    .about-category{ font-size: 60%; }
+    .development-category{ grid-template-columns: 1fr; }
     .about{grid-template-columns: 1fr;}
     .about-perso{ margin: 5%;}
+    .category-others{ grid-template-columns: 1fr; }
 }
