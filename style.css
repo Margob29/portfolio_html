@@ -39,6 +39,14 @@ h3 {
     font-family: 'Kodchasan', sans-serif;
     font-size: 1.5rem;
 }
+h4{
+    font-family: 'Kodchasan', sans-serif;
+    font-size: 1rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
 p{
     font-size: 1.2rem;
     margin: 1rem;
@@ -106,7 +114,7 @@ footer {
     flex-direction: column;
     display: flex;
 }
-h4 {
+footer h4 {
     font-size: 1rem;
     margin: 0;
     margin-bottom: 1rem;
@@ -131,6 +139,7 @@ h4 {
 /* ===================================================== */
 /*                     Home Page                         */
 /* ===================================================== */
+.problems, .services{ margin: 5% 10%;}
 /* ------------------ Parcours ------------------- */
 .my-path{
     display: grid;
@@ -151,11 +160,12 @@ h4 {
 }
 .me-picture{ width: 60%; }
 /* ------------------ Problématiques ------------------- */
-.problems{ margin: 5% 10%; }
 .problems-window-card{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin: 0 10%;
+    gap: 5px;
+    flex-wrap: wrap;
 }
 .problems-card{
     background-color: #446AA4;
@@ -178,11 +188,9 @@ h4 {
     right: 0;
 }
 /* ------------------ Services ------------------- */
-.services{ margin: 5% 10%; }
 .window-card{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-
 }
 .card{
     border: #8B5B1A 2px solid;
@@ -221,15 +229,31 @@ h4 {
 /* ===================================================== */
 .about{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     margin: 5%;
 }
 .about h2{ text-align: center; }
-.logo-parcours{
-    width: 30%;
-    margin: 0;
-    padding: 0;
+.about-category{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0 10%;
 }
+.about-category h2{
+    text-align: center;
+    border-bottom:#8B5B1A 2px solid;
+    padding: 5px;
+    color: #8B5B1A;
+    cursor: pointer;
+    font-size: 200%;
+}
+.about-category h2.active{
+    background-color: #FFEBC3;
+    color: #8B5B1A;
+    border: #8B5B1A 2px solid;
+}
+/* ====================== Parcours =================== */
+.path{ display: flex; }
+.path.inactive{ display: none; }
 /* --------------------- Formation -------------------- */
 .card-formation{ border: #a83e7a 2px solid; }
 .title-formation{ background-color: #a83e7a; }
@@ -239,15 +263,84 @@ h4 {
 .title-pro{ background-color: #446AA4; }
 .highlight-text-pro{ color:#a83e7a; }
 /* --------------------- Perso -------------------- */
-.about-perso{
-    margin: 0 30%;
-    margin-bottom: 50px;
-}
-.about-perso h2{ text-align: center; }
 .highlight-text{ color:#446AA4; }
+/* ====================== Compétences =================== */
+.skills{display:none}
+.skills.active{
+    display: flex;
+    flex-direction: column;
+}
+.development, .softskills, .others{ margin: 2% 5%; }
+/* --------------------- Programmation -------------------- */
+.logo-skill{
+    height: 80px;
+    margin: 0.5rem;
+}
+.development-category{
+    display: grid;
+    grid-template-columns: max(200px) 2fr;
+    margin: 40px 0;
+    padding-left: 5%;
+    gap: 5px;
+}
+.development-category h3{
+    text-align: left;
+    display: flex;
+    align-items: center;
+    color:#a83e7a;
+}
+.development-category div{
+    text-align: left;
+}
+/* --------------------- Softskills -------------------- */
+
+/* --------------------- Autres -------------------- */
+.others h2{ margin-bottom: 0;}
+.category-others{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.language{ 
+    text-align: left;
+    margin: 5%;
+    display: grid;
+    grid-template-columns: max(100px) 1fr;
+    gap:20px;
+}
+.language h4{ text-align: left;}
+.language-flag{ height: 30px; }
+.secourism{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+.secourism p{ 
+    text-align: center;
+    margin: 0;
+    font-size: 1rem;
+}
+.secourism h4{ color:#a83e7a;}
+.logo-skill-video{ 
+    height: 60px;
+    margin: 0;
+}
+.video{
+    font-size: 1rem;
+    text-align: center;
+}
+.video a{text-decoration: underline;}
 /* ===================================================== */
 /*                    Media queries                      */
 /* ===================================================== */
+@media screen and (max-width: 1000px) and (min-width: 769px) {
+    .about{ grid-template-columns: repeat(2, 1fr); }
+    .about-perso{
+        grid-column: span 2;
+        margin: 10%
+    }
+}
 @media screen and (max-width: 768px) {
     /* -------------- Shared ---------------- */
     h1 {
@@ -255,7 +348,7 @@ h4 {
         margin: 20px;
     }
     h2{
-        font-size: 2rem;
+        font-size: 200%;
         text-align: center;
     }
     /* -------------- Navbar ---------------- */
@@ -299,7 +392,10 @@ h4 {
     }
     .window-card{ grid-template-columns: 1fr;}
     .headband{padding: 1rem;}
-    /* -------------- Home Page ---------------- */
+    /* -------------- About ---------------- */
+    .about-category{ font-size: 60%; }
+    .development-category{ grid-template-columns: 1fr; }
     .about{grid-template-columns: 1fr;}
     .about-perso{ margin: 5%;}
+    .category-others{ grid-template-columns: 1fr; }
 }
