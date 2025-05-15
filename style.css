@@ -298,4 +298,7 @@ h4 {
     }
     .window-card{ grid-template-columns: 1fr;}
     .headband{padding: 1rem;}
+    /* -------------- Home Page ---------------- */
+    .about{grid-template-columns: 1fr;}
+    .about-perso{ margin: 5%;}
 }
