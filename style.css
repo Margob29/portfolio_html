@@ -131,6 +131,7 @@ h4 {
 /* ===================================================== */
 /*                     Home Page                         */
 /* ===================================================== */
+.problems, .services{ margin: 5% 10%;}
 /* ------------------ Parcours ------------------- */
 .my-path{
     display: grid;
@@ -151,11 +152,11 @@ h4 {
 }
 .me-picture{ width: 60%; }
 /* ------------------ Problématiques ------------------- */
-.problems{ margin: 5% 10%; }
 .problems-window-card{
     display: flex;
     justify-content: space-between;
     margin: 0 10%;
+    gap: 5px;
 }
 .problems-card{
     background-color: #446AA4;
@@ -178,11 +179,9 @@ h4 {
     right: 0;
 }
 /* ------------------ Services ------------------- */
-.services{ margin: 5% 10%; }
 .window-card{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-
 }
 .card{
     border: #8B5B1A 2px solid;
@@ -221,14 +220,34 @@ h4 {
 /* ===================================================== */
 .about{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     margin: 5%;
 }
 .about h2{ text-align: center; }
-.logo-parcours{
-    width: 30%;
-    margin: 0;
-    padding: 0;
+.about-category{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0 10%;
+}
+.about-category h2{
+    text-align: center;
+    border-bottom:#8B5B1A 2px solid;
+    padding: 5px;
+    color: #8B5B1A;
+    cursor: pointer;
+    font-size: 200%;
+}
+.about-category h2.active{
+    background-color: #FFEBC3;
+    color: #8B5B1A;
+    border: #8B5B1A 2px solid;
+}
+/* ====================== Parcours =================== */
+.path{
+    display: flex;
+}
+.path.inactive{
+    display: none;
 }
 /* --------------------- Formation -------------------- */
 .card-formation{ border: #a83e7a 2px solid; }
@@ -239,15 +258,42 @@ h4 {
 .title-pro{ background-color: #446AA4; }
 .highlight-text-pro{ color:#a83e7a; }
 /* --------------------- Perso -------------------- */
-.about-perso{
-    margin: 0 30%;
-    margin-bottom: 50px;
-}
-.about-perso h2{ text-align: center; }
 .highlight-text{ color:#446AA4; }
+/* ====================== Compétences =================== */
+.skills{display:none}
+.skills.active{
+    display: flex;
+    flex-direction: column;
+}
+.development, .softskills, .others{ margin: 5%; }
+/* --------------------- Programmation -------------------- */
+.logo-skill{ height: 100px; }
+.language{ 
+    text-align: left;
+    margin: 5%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:5px;
+    width: 20%
+}
+.language h4{
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+.language-flag{ height: 30px; }
+/* --------------------- Softskills -------------------- */
+/* --------------------- Atres -------------------- */
 /* ===================================================== */
 /*                    Media queries                      */
 /* ===================================================== */
+@media screen and (max-width: 1000px) and (min-width: 769px) {
+    .about{ grid-template-columns: repeat(2, 1fr); }
+    .about-perso{
+        grid-column: span 2;
+        margin: 10%
+    }
+}
 @media screen and (max-width: 768px) {
     /* -------------- Shared ---------------- */
     h1 {
@@ -255,7 +301,7 @@ h4 {
         margin: 20px;
     }
     h2{
-        font-size: 2rem;
+        font-size: 200%;
         text-align: center;
     }
     /* -------------- Navbar ---------------- */
@@ -299,7 +345,10 @@ h4 {
     }
     .window-card{ grid-template-columns: 1fr;}
     .headband{padding: 1rem;}
-    /* -------------- Home Page ---------------- */
+    /* -------------- About ---------------- */
+    .about-category{
+        font-size: 60%;
+    }
     .about{grid-template-columns: 1fr;}
     .about-perso{ margin: 5%;}
 }
