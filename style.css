@@ -81,6 +81,7 @@ a{
     border: none;
     cursor: pointer;
     color:#446AA4;
+    margin-right: 40px;
 }
 .nav-links-container{
     display: flex;
@@ -264,7 +265,7 @@ h4 {
         align-items: center;
         padding: 10px 20px;
     }
-    .hamburger { display: block;}
+    .hamburger { display: block; }
     .nav-links-container {
         display: none;
         position: absolute;
