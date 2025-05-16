@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <title>Margo Biret</title>
+    <link rel="stylesheet" href="../style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="mport" href="/nav.html">
+</head>
+<body>
+    <!-- ===================================================== */
+      /*                       Navbar                          */
+      /* ===================================================== */ -->
+    <nav class="navbar">
+        <a href="/portfolio_html">
+            <img src="../img/Margo_montagne_coupé.png" alt="Logo" class="logo">
+        </a>
+        <button class="hamburger">☰</button>
+        <div class="nav-links-container">
+            <a href="/portfolio_html/a-propos/" class="nav-links">À propos de moi</a>
+            <a href="/portfolio_html/portfolio/" class="nav-links">Projets</a>
+            <a href="/portfolio_html/contact/" class="nav-links">Contact</a>
+        </div>
+    </nav>
+    <!-- ===================================================== */
+    /*                          Contact                        */
+    /* ======================================================= */ -->
+    <div class="body-content">
+        <h1>CONTACT</h1>
+        <div class="card contact">
+            <div class="card-title">
+                <h3>Mes informations</h3>
+                <span>X</span>
+            </div>
+            <div class="card-content">
+                <p>Envoyer un mail :<a href="mailto:margobiret@yahoo.fr">margobiret@yahoo.fr</a></p>
+                <p>Découvrir mon profil sur LinkedIn : <a href="https://www.linkedin.com/in/margo-biret" target="_blank"><img src="../img/linkedin-icon.png" class="social-icon-contact"/></a></p>
+                <p>Voir mes projets de codes sur GitHub: <a href="https://github.com/Margob29" target="_blank"><img src="../img/github-mark.png" class="social-icon-contact"/></a></p>
+            </div>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div>
+                    <h2>Prendre rendez-vous</h2>
+                    <p>Je suis disponible pour discuter de votre projet ou répondre à vos questions !</p>
+                    <p>Réservez un premier appel gratuit d'1h maximum pour échanger sur vos besoins.</p>
+                    <!-- widget en ligne Calendly -->
+                    <div class="calendly-inline-widget" data-url="https://calendly.com/margobiret/60min?hide_event_type_details=1&text_color=446aa4&primary_color=8b5b1a" style="min-width:250px;height:700px;"></div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h2>Formulaire de contact</h2>
+                <form>
+                    <div class="form-content">
+                        <label for="name">Nom et prénom *</label>
+                        <input type="text" id="name" name="name" required placeholder="Ex: Margo Biret">
+                    </div>
+                    <div class="form-content">
+                        <label for="company">Raison sociale</label>
+                        <input type="text" id="company" name="company" placeholder="Nom de votre entreprise ou de votre association">
+                    </div>
+                    <div class="form-content">
+                        <legend for="contact">Comment vous recontacter (au moins 1) * : </legend>
+                        <div class="checkbox">
+                            <!-- <input type="checkbox" id="email" name="mail" value="email"> -->
+                            <label for="email"><input type="email" id="email" name="email" placeholder="Adresse mail"></label>
+                            <!-- <input type="checkbox" id="phone" name="phone" value="phone"> -->
+                            <input type="phone" id="telephone" name="telephone" placeholder="Numéro de téléphone">
+                        </div>
+                    </div>
+                    <div class="form-content">
+                        <label for="message">Site existant</label>
+                        <p>Vous avez déjà un site ? Je peux aller voir de quoi vous parlez !</p>
+                        <input type="url" id="url" name="url" placeholder="Url de votre site (ex: https://www.votresite.fr)"></textarea>
+                    </div>
+                    <div class="form-content">
+                        <label for="message">Votre message *</label>
+                        <p>Des questions sur ce qu'il est possible de faire ? Un devis pour votre projet ? Une idée déjà en tête ?</p>
+                        <textarea id="message" name="message" rows="4" placeholder="N'hésitez pas à détailler !"></textarea>
+                        <p style="margin-top: 10px;">* obligatoires</p>
+                    </div>
+                    <div class="form-btn">
+                        <input type="submit" value="Envoyer" class="btn">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- ===================================================== */
+      /*                        Footer                         */
+      /* ===================================================== */ -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>LIENS UTILES</h4>
+                <a href="/portfolio_html/a-propos/" class="footer-link">A propos</a>
+                <a href="/portfolio_html/portfolio/" class="footer-link">Projets</a>
+            </div>
+            <div class="footer-column">
+                <a href="/portfolio_html">
+                    <img src="../img/Margo_montage_entier.png" alt="Logo" class="logo-footer"/>
+                </a>
+            </div>
+            <div class="footer-column">
+                <h4>CONTACT</h4>
+                <a href="mailto:margobiret@yahoo.fr" class="footer-link">margobiret@yahoo.fr</a>
+                <a href="/portfolio_html/contact/" class="footer-link">Formulaire de contact</a>
+                <div>
+                    <p>Réseaux : </p>
+                    <a href="https://www.linkedin.com/in/margo-biret" target="_blank"><img src="../img/linkedin-icon.png" class="social-icon"/></a>
+                    <a href="https://github.com/Margob29" target="_blank"><img src="../img/github-mark.png" class="social-icon"/></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ===================================================== */
+    /*                        Scripts                          */
+    /* ======================================================= */ -->
+    <!-- Calendly widget -->
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links-container');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        //Check validity of contact
+        const numIsValid = document.querySelector("#telephone").checkValidity();
+        const emailIsValid = document.querySelector("#email").checkValidity();
+        const submitBtn = document.querySelector("[type=submit]");
+
+        if(numIsValid || emailIsValid) {
+            submitBtn.classList.remove("disabled");
+            console.log("valid");
+        }
+        else {
+            submitBtn.classList.add("disabled");
+            console.log("invalid");
+        }
+    </script>
+</body>
+
