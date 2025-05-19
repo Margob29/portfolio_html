@@ -407,6 +407,62 @@ form{
     }
 }
 /* ===================================================== */
+/*                       Projets                         */
+/* ===================================================== */
+.projects{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 5%;
+}
+hr{ width: 85%;}
+.project-id{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.project-id p{
+    text-align: center;
+    align-items: center;
+}
+.img-project{ text-align: center; }
+.id-link{ text-align: center; }
+.card-project-content-pro h4, .card-project-content h4{
+    font-size: 1.3rem; 
+    margin: 0 1rem;
+}
+.project-details, .project-details-pro{ margin-bottom: 20px; }
+.details{
+    margin: 0 5%; 
+    font-size: 1rem;}
+.step-list{
+    text-align: left;
+    margin: 0 5%;
+    font-size: 1.2rem;
+}
+.step-list-details{
+    font-size: 1rem;
+    margin-top: 5px;
+}
+.project-pictures{ width: 20vw;}
+/* --------------------- Formation -------------------- */
+.project-link-formation{ 
+    text-decoration: underline;
+    color:#a83e7a;
+}
+.project-details h4{color:#446AA4;}
+/* --------------------- Pro -------------------- */
+.card-project-content-pro h3{color:#a83e7a;}
+.project-link-pro{ 
+    text-decoration: underline;
+    color:#446AA4;
+}
+.project-details-pro h4{ color:#a83e7a; }
+/* --------------------- Perso -------------------- */
+.card-project-content h3{color:#446AA4;}
+.project-link-perso{
+    text-decoration:underline;
+    color:#8B5B1A;
+}
+/* ===================================================== */
 /*                    Media queries                      */
 /* ===================================================== */
 @media screen and (max-width: 1000px) and (min-width: 769px) {
@@ -476,4 +532,10 @@ form{
     /* -------------- Contact ---------------- */
     .contact-container{ grid-template-columns: 1fr; }
     .contact{margin: 20px 5%;}
+    /* -------------- Project ---------------- */
+    .projects{ grid-template-columns: 1fr; }
+    .project-pictures{ width: 60vw; }
+    .project-id{ grid-template-columns: 1fr; }
+    .card-project-content h4{ font-size: 110%; }
+    .project-details p, .step-list, .summary{ font-size: 100%; }
 }
