@@ -31,6 +31,550 @@
         <div class="projects">
             <!------------------------ Formation ------------------------>
             <div>
+                <!--Drone de reforestation-->
+                <div class="card card-formation">
+                    <div class="card-title title-formation">
+                        <h3>Drone de reforestation - Instant Forest</h3>
+                        <span>X</span>
+                    </div>
+                    <div class="card-project-content">
+                        <h3>En bref</h3>
+                        <div class="project-id">
+                            <p>2023-2024</p>
+                            <div class="img-project">ROS2, modélisation</div>
+                            <p>?</p>
+                        </div>
+                        <div>
+                            <h4>Résumé : </h4> 
+                            <p class="summary">L'entreprise Kariboo est spécialisée dans les solutions de drones sur mesure. L'objectif de Instant Forest était de concevoir un drone capable de planter des graines de façon autonome dans une zone déterminée.</p>
+                        </div>
+                        <hr/>
+                        <h3>Détails du projet</h3>
+                        <div class="project-details">
+                            <h4>Problème</h4>
+                                <p>Le projet avait été commencé l'année précédente par d'autres élèves. Ils avaient créé un système de largage des graines et monté les différents éléments sur le drone.</p>
+                                <div class="img-project"><img src="../img/projets/kariboo/kariboo-drone-initial.jpg" class="project-pictures-small"/></div>
+                                <p>Notre groupe devait donc rendre le drone autonome dans son déplacement dans la zone.</p>
+                            <h4>Solutions</h4>
+                            <p>Le projet s'est réalisé en plusieurs étapes : </p>
+                            <ol class="step-list">
+                                <li>Etat de l'art.
+                                    <p class="step-list-details">Recherches autour des différents moyens de localisation du drone, des différentes méthodes et algorithme de génération de trajectoire et des différents outils software permettant de contrôler un drone.</p>
+                                    <p class="step-list-details">Finalement nous avons opté pour ROS2, avec PX4 et un BlackCube pour le contrôle. Pour localiser le drone, nous avons choisi la méthode RTK complétée par un lidar 1D pour connaître la hauteur par rapport au sol. Pour la génération de trajectoire, nous avons décidé d'utiliser le Back-and-Forth-Path (BFP).</p>
+                                </li>
+                                <li>Génération du chemin.
+                                    <p class="step-list-details">Pour générer le chemin que le drone doit parcourir, nous avons créé un algorithme qui, à partir d'une photo satellite de la zone et une analyse d'image, créer le meilleur BFP dans cette zone.</p>
+                                    <p class="step-list-details">Le chemin est ensuite discrédité en points GPS successifs à atteindre et enregistré dans un fichier CSV.</p>
+                                    <div class="img-project"><img src="../img/projets/kariboo/kariboo-image-satellite.jpg" class="project-pictures-small"> => <img src="../img/projets/kariboo/kariboo-BFP.jpg" class="project-pictures-small"/></div>
+                                </li>
+                                <li>Simulation de vol du drone.
+                                    <p class="step-list-details">Nous avons utilisé Gazebo pour simuler le vol. Lorsque le drone démarre, il initialise son repère local : nous avons donc utilisé une librairie permettant de transformer nos points GPS en points dans le repère du drone.</p>
+                                    <a href="https://www.youtubeeducation.com/watch?v=EM3NkIjqCws" target="_blank" class="project-link-formation">Vidéo de la simulation</a>
+                                </li>
+                                <li>Modélisation du système de largage des graines.
+                                    <p class="step-list-details">L'ancien groupe avait déjà proposé un système qui avait cassé lors des tests. Nous avons pris la décision de proposer une nouvelle modélisation plus robuste.</p>
+                                    <p class="step-list-details">Nous avons changé le système d'accroche ainsi que la répartition du poids du moteur pour assurer une meilleure stabilité du drone.</p>
+                                    <div class="img-project"><img src="../img/projets/kariboo/kariboo-modelisation-fixation.jpg" class="project-pictures-small"/><img src="../img/projets/kariboo/kariboo-modelisation-poids.jpg" class="project-pictures-small"></div>
+                                    <p class="step-list-details">Nous avons également ajouté un système de vérification du passage de la graine pour s'assurer que celle-ci soit bien larguée.</p>
+                                    <div class="img-project"><img src="../img/projets/kariboo/kariboo-modelisation-graine.jpg" class="project-pictures-small"/></div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                 <!--But-poto-->
+                <div class="card card-formation">
+                    <div class="card-title title-formation">
+                        <h3>Détection des cages d'un terrain de foot</h3>
+                        <span>X</span>
+                    </div>
+                    <div class="card-project-content">
+                        <h3>En bref</h3>
+                        <div class="project-id">
+                            <p>2023</p>
+                            <div class="img-project">python</div>
+                            <p>?</p>
+                        </div>
+                        <div>
+                            <h4>Résumé : </h4> 
+                            <p class="summary">Inspiré de la RoboCup, ce projet visait à s'occuper d'une partie du traitement d'image nécessaire au robot pour circuler sur le terrain (repérage de la balle, limites du terrain, cages...). Notre groupe devait être capable de détecter les cages par analyse d'image.</p>
+                        </div>
+                        <hr/>
+                        <h3>Détails du projet</h3>
+                        <div class="project-details">
+                            <h4>Problème</h4>
+                                <p>Le capteur d'image envoie successivement des photos du terrain selon la position du robot. En réalisant une analyse sur chacune des images successives, il fallait être capable de détecter si les buts étaient présents sur l'image et leur limitation.</p>
+                            <h4>Solutions</h4>
+                            <p>Nous avons superposé différentes méthodes d'analyse d'image afin de détecter les buts :</p>
+                            <ol class="step-list">
+                                <li>Détection des bords du terrain.
+                                    <p class="step-list-details">Utilisation de la méthode UNet pour obtenir l'intérieur terrain, à l'aide de la couleur du gazon.</p>
+                                    <div class="img-project"><img src="../img/projets/but-poto/but-poto-image.jpg" class="project-pictures-small"> => <img src="../img/projets/but-poto/but-poto-terrain.jpg" class="project-pictures-small"> </div>
+                                    <p class="step-list-details">Soustraction d'une dilatation et d'une érosion de l'image obtenu pour avoir les bords du terrain.</p>
+                                    <div class="img-project"><img src="../img/projets/but-poto/but-poto-bords-terrain.jpg" class="project-pictures-small"></div>
+                                </li>
+                                <li>Détection des poteaux.
+                                    <p class="step-list-details">Détection de l'angle d'horizon et tracé des lignes verticales.</p>
+                                    <div class="img-project"><img src="../img/projets/but-poto/but-poto-lignes-verti.jpg" class="project-pictures-small"></div>
+                                    <p class="step-list-details">Application du masque créé dans l'étape précédente. Récupération des seules lignes verticales encore présentes après l'application du masque.</p>
+                                    <div class="img-project"><img src="../img/projets/but-poto/but-poto-ligne-masque.jpg" class="project-pictures-small"></div>
+                                </li>
+                                <li>Reconstruction des buts.
+                                    <p class="step-list-details">Création d'un rectangle symbolisant les buts. Rotation de l'image pour que les buts soient à la verticale.</p>
+                                    <div class="img-project"><img src="../img/projets/but-poto/but-poto-rectangle.jpg" class="project-pictures-small"></div>
+                                </li>
+                                <li>Analyse de nos résultats.
+                                    <p class="step-list-details">Pour avoir des métriques permettant de savoir si notre algorithme était bon, nous avons détecté à la main la surface des buts, appelée "Aire de référence".</p>
+                                    <div class="img-project"><img src="../img/projets/but-poto/but-poto-manuel.jpg" class="project-pictures-small"></div>
+                                    <p class="step-list-details">Nous avons ensuite étudié le rapport de cette aire de référence avec l'aire détectée par notre algorithme.</p>
+                                    <div class="img-project"><img src="../img/projets/but-poto/but-poto-graphique.jpg" class="project-pictures-small"></div>
+                                    <p class="step-list-details">Nous avons remarqué que notre méthode n'étaient pas très performante sur les images floues ou sur les images où les buts n'apparaissaient quasiment pas.</p>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                 <!--Persistance visuelle-->
+                <div class="card card-formation">
+                    <div class="card-title title-formation">
+                        <h3>Persistance visuelle</h3>
+                        <span>X</span>
+                    </div>
+                    <div class="card-project-content">
+                        <h3>En bref</h3>
+                        <div class="project-id">
+                            <p>2025</p>
+                            <div class="img-project"><img src="../img/logos/WordPress-logotype-alternative.png" alt="WordPress" class="logo-skill"></div>
+                            <p>Développeuse</p>
+                        </div>
+                        <p class="id-link">Lien du site : <a href="https://www.etremontagnard.org" target="_blank" class="project-link-formation">www.etremontagnard.org</a></p>
+                        <div>
+                            <h4>Résumé : </h4> 
+                            <p class="summary">Le premier site de l'association n'étant plus actif, l'objectif de ce projet était de repartir de 0 pour faire un nouveau site. Celui-ci devait permettre aux membres du bureau de poster régulièrement des articles ainsi qu'aux membres et personnes externes de se renseigner sur l'association et d'adhérer.</p>
+                        </div>
+                        <hr/>
+                        <h3>Détails du projet</h3>
+                        <div class="project-details">
+                            <h4>Problème</h4>
+                                <p>L'ancien site n'était plus actif et il n'y avait pas de moyen de communiquer sur les activités de l'association.</p>
+                                <p class="details">
+                                    => pas d'hébergement </br>
+                                    => ancien nom de domaine indisponible </br>
+                                </p>
+                                <p>Volonté de visibilité pour l'association. Avoir un point commun où rediriger les gens pour les adhésions, les informations...</p>
+                            <h4>Solutions</h4>
+                            <p>Le projet s'est réalisé en plusieurs étapes : </p>
+                            <ol class="step-list">
+                                <li>Achat d'un nouveau nom de domaine.
+                                    <p class="step-list-details">Recherches pour un nom de domaine qui contienne le nom de l'association, qui ne coûte pas cher à renouveler et dont le gestionnaire soit suffisamment flexible. Il a finalement été choisi <a href="https://www.etremontagnard.org" target="_blank">etremontagnard.org</a></p>
+                                </li>
+                                <li>Création d'une première version du site avec le lien d'adhésion.
+                                    <p class="step-list-details">Choix de réaliser une première version de la page d'accueil en HTML et CSS uniquement. Cela permettait d'avoir une première version rapidement, qui redirige les visiteurs vers les liens d'adhésion ou de don.</p>
+                                    <div class="img-project"><img src="../img/EM/V1_website.jpg" class="project-pictures"/></div>
+                                </li>
+                                <li>Création d'une deuxième version avec la description de l'association.
+                                    <p class="step-list-details">Base visuelle sur le thème WordPress choisi pour le site final. Présence uniquement des pages statiques (sans ajout de contenu de la part des utilisateurs). Tout est encore en HTML/CSS.</p>
+                                    <div class="img-project"><img src="../img/EM/V2_website.jpg" class="project-pictures"/> </div>
+                                </li>
+                                <li>Création de la version finale avec toutes les fonctionnalités.
+                                    <p class="step-list-details">Recherche d'un autre moyen d'hébergement correspondant à la demande (flux de visiteurs, prix...) pouvant accepter des sites dynamiques.</p>
+                                    <p class="step-list-details">Déploiement de la version WordPress, permettant au bureau d'ajouter des articles dans différentes catégories.</p>
+                                    <div class="img-project"><img src="../img/EM/V3_website.jpg" class="project-pictures"></div>
+                                </li>
+                                <li>Rédaction de tutoriel pour que les membres du bureau puissent être indépendants.
+                                    <p class="step-list-details">Mise en page d'un descriptif étape par étape, puis validation de son utilisation.</p>
+                                    <div class="img-project"><img src="../img/EM/tuto.jpg" class="project-pictures"> </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                 <!--CookHub-->
+                <div class="card card-formation">
+                    <div class="card-title title-formation">
+                        <h3>CookHub</h3>
+                        <span>X</span>
+                    </div>
+                    <div class="card-project-content">
+                        <h3>En bref</h3>
+                        <div class="project-id">
+                            <p>2025</p>
+                            <div class="img-project"><img src="../img/logos/WordPress-logotype-alternative.png" alt="WordPress" class="logo-skill"></div>
+                            <p>Développeuse</p>
+                        </div>
+                        <p class="id-link">Lien du site : <a href="https://www.etremontagnard.org" target="_blank" class="project-link-formation">www.etremontagnard.org</a></p>
+                        <div>
+                            <h4>Résumé : </h4> 
+                            <p class="summary">Le premier site de l'association n'étant plus actif, l'objectif de ce projet était de repartir de 0 pour faire un nouveau site. Celui-ci devait permettre aux membres du bureau de poster régulièrement des articles ainsi qu'aux membres et personnes externes de se renseigner sur l'association et d'adhérer.</p>
+                        </div>
+                        <hr/>
+                        <h3>Détails du projet</h3>
+                        <div class="project-details">
+                            <h4>Problème</h4>
+                                <p>L'ancien site n'était plus actif et il n'y avait pas de moyen de communiquer sur les activités de l'association.</p>
+                                <p class="details">
+                                    => pas d'hébergement </br>
+                                    => ancien nom de domaine indisponible </br>
+                                </p>
+                                <p>Volonté de visibilité pour l'association. Avoir un point commun où rediriger les gens pour les adhésions, les informations...</p>
+                            <h4>Solutions</h4>
+                            <p>Le projet s'est réalisé en plusieurs étapes : </p>
+                            <ol class="step-list">
+                                <li>Achat d'un nouveau nom de domaine.
+                                    <p class="step-list-details">Recherches pour un nom de domaine qui contienne le nom de l'association, qui ne coûte pas cher à renouveler et dont le gestionnaire soit suffisamment flexible. Il a finalement été choisi <a href="https://www.etremontagnard.org" target="_blank">etremontagnard.org</a></p>
+                                </li>
+                                <li>Création d'une première version du site avec le lien d'adhésion.
+                                    <p class="step-list-details">Choix de réaliser une première version de la page d'accueil en HTML et CSS uniquement. Cela permettait d'avoir une première version rapidement, qui redirige les visiteurs vers les liens d'adhésion ou de don.</p>
+                                    <div class="img-project"><img src="../img/EM/V1_website.jpg" class="project-pictures"/></div>
+                                </li>
+                                <li>Création d'une deuxième version avec la description de l'association.
+                                    <p class="step-list-details">Base visuelle sur le thème WordPress choisi pour le site final. Présence uniquement des pages statiques (sans ajout de contenu de la part des utilisateurs). Tout est encore en HTML/CSS.</p>
+                                    <div class="img-project"><img src="../img/EM/V2_website.jpg" class="project-pictures"/> </div>
+                                </li>
+                                <li>Création de la version finale avec toutes les fonctionnalités.
+                                    <p class="step-list-details">Recherche d'un autre moyen d'hébergement correspondant à la demande (flux de visiteurs, prix...) pouvant accepter des sites dynamiques.</p>
+                                    <p class="step-list-details">Déploiement de la version WordPress, permettant au bureau d'ajouter des articles dans différentes catégories.</p>
+                                    <div class="img-project"><img src="../img/EM/V3_website.jpg" class="project-pictures"></div>
+                                </li>
+                                <li>Rédaction de tutoriel pour que les membres du bureau puissent être indépendants.
+                                    <p class="step-list-details">Mise en page d'un descriptif étape par étape, puis validation de son utilisation.</p>
+                                    <div class="img-project"><img src="../img/EM/tuto.jpg" class="project-pictures"> </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                 <!--Génie logiciel et dev mobile-->
+                <div class="card card-formation">
+                    <div class="card-title title-formation">
+                        <h3>Site web de Être Montagnard</h3>
+                        <span>X</span>
+                    </div>
+                    <div class="card-project-content">
+                        <h3>En bref</h3>
+                        <div class="project-id">
+                            <p>2025</p>
+                            <div class="img-project"><img src="../img/logos/WordPress-logotype-alternative.png" alt="WordPress" class="logo-skill"></div>
+                            <p>Développeuse</p>
+                        </div>
+                        <p class="id-link">Lien du site : <a href="https://www.etremontagnard.org" target="_blank" class="project-link-formation">www.etremontagnard.org</a></p>
+                        <div>
+                            <h4>Résumé : </h4> 
+                            <p class="summary">Le premier site de l'association n'étant plus actif, l'objectif de ce projet était de repartir de 0 pour faire un nouveau site. Celui-ci devait permettre aux membres du bureau de poster régulièrement des articles ainsi qu'aux membres et personnes externes de se renseigner sur l'association et d'adhérer.</p>
+                        </div>
+                        <hr/>
+                        <h3>Détails du projet</h3>
+                        <div class="project-details">
+                            <h4>Problème</h4>
+                                <p>L'ancien site n'était plus actif et il n'y avait pas de moyen de communiquer sur les activités de l'association.</p>
+                                <p class="details">
+                                    => pas d'hébergement </br>
+                                    => ancien nom de domaine indisponible </br>
+                                </p>
+                                <p>Volonté de visibilité pour l'association. Avoir un point commun où rediriger les gens pour les adhésions, les informations...</p>
+                            <h4>Solutions</h4>
+                            <p>Le projet s'est réalisé en plusieurs étapes : </p>
+                            <ol class="step-list">
+                                <li>Achat d'un nouveau nom de domaine.
+                                    <p class="step-list-details">Recherches pour un nom de domaine qui contienne le nom de l'association, qui ne coûte pas cher à renouveler et dont le gestionnaire soit suffisamment flexible. Il a finalement été choisi <a href="https://www.etremontagnard.org" target="_blank">etremontagnard.org</a></p>
+                                </li>
+                                <li>Création d'une première version du site avec le lien d'adhésion.
+                                    <p class="step-list-details">Choix de réaliser une première version de la page d'accueil en HTML et CSS uniquement. Cela permettait d'avoir une première version rapidement, qui redirige les visiteurs vers les liens d'adhésion ou de don.</p>
+                                    <div class="img-project"><img src="../img/EM/V1_website.jpg" class="project-pictures"/></div>
+                                </li>
+                                <li>Création d'une deuxième version avec la description de l'association.
+                                    <p class="step-list-details">Base visuelle sur le thème WordPress choisi pour le site final. Présence uniquement des pages statiques (sans ajout de contenu de la part des utilisateurs). Tout est encore en HTML/CSS.</p>
+                                    <div class="img-project"><img src="../img/EM/V2_website.jpg" class="project-pictures"/> </div>
+                                </li>
+                                <li>Création de la version finale avec toutes les fonctionnalités.
+                                    <p class="step-list-details">Recherche d'un autre moyen d'hébergement correspondant à la demande (flux de visiteurs, prix...) pouvant accepter des sites dynamiques.</p>
+                                    <p class="step-list-details">Déploiement de la version WordPress, permettant au bureau d'ajouter des articles dans différentes catégories.</p>
+                                    <div class="img-project"><img src="../img/EM/V3_website.jpg" class="project-pictures"></div>
+                                </li>
+                                <li>Rédaction de tutoriel pour que les membres du bureau puissent être indépendants.
+                                    <p class="step-list-details">Mise en page d'un descriptif étape par étape, puis validation de son utilisation.</p>
+                                    <div class="img-project"><img src="../img/EM/tuto.jpg" class="project-pictures"> </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                 <!--Réalité augmentée Matlab-->
+                <div class="card card-formation">
+                    <div class="card-title title-formation">
+                        <h3>Site web de Être Montagnard</h3>
+                        <span>X</span>
+                    </div>
+                    <div class="card-project-content">
+                        <h3>En bref</h3>
+                        <div class="project-id">
+                            <p>2025</p>
+                            <div class="img-project"><img src="../img/logos/WordPress-logotype-alternative.png" alt="WordPress" class="logo-skill"></div>
+                            <p>Développeuse</p>
+                        </div>
+                        <p class="id-link">Lien du site : <a href="https://www.etremontagnard.org" target="_blank" class="project-link-formation">www.etremontagnard.org</a></p>
+                        <div>
+                            <h4>Résumé : </h4> 
+                            <p class="summary">Le premier site de l'association n'étant plus actif, l'objectif de ce projet était de repartir de 0 pour faire un nouveau site. Celui-ci devait permettre aux membres du bureau de poster régulièrement des articles ainsi qu'aux membres et personnes externes de se renseigner sur l'association et d'adhérer.</p>
+                        </div>
+                        <hr/>
+                        <h3>Détails du projet</h3>
+                        <div class="project-details">
+                            <h4>Problème</h4>
+                                <p>L'ancien site n'était plus actif et il n'y avait pas de moyen de communiquer sur les activités de l'association.</p>
+                                <p class="details">
+                                    => pas d'hébergement </br>
+                                    => ancien nom de domaine indisponible </br>
+                                </p>
+                                <p>Volonté de visibilité pour l'association. Avoir un point commun où rediriger les gens pour les adhésions, les informations...</p>
+                            <h4>Solutions</h4>
+                            <p>Le projet s'est réalisé en plusieurs étapes : </p>
+                            <ol class="step-list">
+                                <li>Achat d'un nouveau nom de domaine.
+                                    <p class="step-list-details">Recherches pour un nom de domaine qui contienne le nom de l'association, qui ne coûte pas cher à renouveler et dont le gestionnaire soit suffisamment flexible. Il a finalement été choisi <a href="https://www.etremontagnard.org" target="_blank">etremontagnard.org</a></p>
+                                </li>
+                                <li>Création d'une première version du site avec le lien d'adhésion.
+                                    <p class="step-list-details">Choix de réaliser une première version de la page d'accueil en HTML et CSS uniquement. Cela permettait d'avoir une première version rapidement, qui redirige les visiteurs vers les liens d'adhésion ou de don.</p>
+                                    <div class="img-project"><img src="../img/EM/V1_website.jpg" class="project-pictures"/></div>
+                                </li>
+                                <li>Création d'une deuxième version avec la description de l'association.
+                                    <p class="step-list-details">Base visuelle sur le thème WordPress choisi pour le site final. Présence uniquement des pages statiques (sans ajout de contenu de la part des utilisateurs). Tout est encore en HTML/CSS.</p>
+                                    <div class="img-project"><img src="../img/EM/V2_website.jpg" class="project-pictures"/> </div>
+                                </li>
+                                <li>Création de la version finale avec toutes les fonctionnalités.
+                                    <p class="step-list-details">Recherche d'un autre moyen d'hébergement correspondant à la demande (flux de visiteurs, prix...) pouvant accepter des sites dynamiques.</p>
+                                    <p class="step-list-details">Déploiement de la version WordPress, permettant au bureau d'ajouter des articles dans différentes catégories.</p>
+                                    <div class="img-project"><img src="../img/EM/V3_website.jpg" class="project-pictures"></div>
+                                </li>
+                                <li>Rédaction de tutoriel pour que les membres du bureau puissent être indépendants.
+                                    <p class="step-list-details">Mise en page d'un descriptif étape par étape, puis validation de son utilisation.</p>
+                                    <div class="img-project"><img src="../img/EM/tuto.jpg" class="project-pictures"> </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!--UStory-->
+                <div class="card card-formation">
+                    <div class="card-title title-formation">
+                        <h3>Site web de Être Montagnard</h3>
+                        <span>X</span>
+                    </div>
+                    <div class="card-project-content">
+                        <h3>En bref</h3>
+                        <div class="project-id">
+                            <p>2025</p>
+                            <div class="img-project"><img src="../img/logos/WordPress-logotype-alternative.png" alt="WordPress" class="logo-skill"></div>
+                            <p>Développeuse</p>
+                        </div>
+                        <p class="id-link">Lien du site : <a href="https://www.etremontagnard.org" target="_blank" class="project-link-formation">www.etremontagnard.org</a></p>
+                        <div>
+                            <h4>Résumé : </h4> 
+                            <p class="summary">Le premier site de l'association n'étant plus actif, l'objectif de ce projet était de repartir de 0 pour faire un nouveau site. Celui-ci devait permettre aux membres du bureau de poster régulièrement des articles ainsi qu'aux membres et personnes externes de se renseigner sur l'association et d'adhérer.</p>
+                        </div>
+                        <hr/>
+                        <h3>Détails du projet</h3>
+                        <div class="project-details">
+                            <h4>Problème</h4>
+                                <p>L'ancien site n'était plus actif et il n'y avait pas de moyen de communiquer sur les activités de l'association.</p>
+                                <p class="details">
+                                    => pas d'hébergement </br>
+                                    => ancien nom de domaine indisponible </br>
+                                </p>
+                                <p>Volonté de visibilité pour l'association. Avoir un point commun où rediriger les gens pour les adhésions, les informations...</p>
+                            <h4>Solutions</h4>
+                            <p>Le projet s'est réalisé en plusieurs étapes : </p>
+                            <ol class="step-list">
+                                <li>Achat d'un nouveau nom de domaine.
+                                    <p class="step-list-details">Recherches pour un nom de domaine qui contienne le nom de l'association, qui ne coûte pas cher à renouveler et dont le gestionnaire soit suffisamment flexible. Il a finalement été choisi <a href="https://www.etremontagnard.org" target="_blank">etremontagnard.org</a></p>
+                                </li>
+                                <li>Création d'une première version du site avec le lien d'adhésion.
+                                    <p class="step-list-details">Choix de réaliser une première version de la page d'accueil en HTML et CSS uniquement. Cela permettait d'avoir une première version rapidement, qui redirige les visiteurs vers les liens d'adhésion ou de don.</p>
+                                    <div class="img-project"><img src="../img/EM/V1_website.jpg" class="project-pictures"/></div>
+                                </li>
+                                <li>Création d'une deuxième version avec la description de l'association.
+                                    <p class="step-list-details">Base visuelle sur le thème WordPress choisi pour le site final. Présence uniquement des pages statiques (sans ajout de contenu de la part des utilisateurs). Tout est encore en HTML/CSS.</p>
+                                    <div class="img-project"><img src="../img/EM/V2_website.jpg" class="project-pictures"/> </div>
+                                </li>
+                                <li>Création de la version finale avec toutes les fonctionnalités.
+                                    <p class="step-list-details">Recherche d'un autre moyen d'hébergement correspondant à la demande (flux de visiteurs, prix...) pouvant accepter des sites dynamiques.</p>
+                                    <p class="step-list-details">Déploiement de la version WordPress, permettant au bureau d'ajouter des articles dans différentes catégories.</p>
+                                    <div class="img-project"><img src="../img/EM/V3_website.jpg" class="project-pictures"></div>
+                                </li>
+                                <li>Rédaction de tutoriel pour que les membres du bureau puissent être indépendants.
+                                    <p class="step-list-details">Mise en page d'un descriptif étape par étape, puis validation de son utilisation.</p>
+                                    <div class="img-project"><img src="../img/EM/tuto.jpg" class="project-pictures"> </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!--Alice au pays des merveilles-->
+                <div class="card card-formation">
+                    <div class="card-title title-formation">
+                        <h3>Site web de Être Montagnard</h3>
+                        <span>X</span>
+                    </div>
+                    <div class="card-project-content">
+                        <h3>En bref</h3>
+                        <div class="project-id">
+                            <p>2025</p>
+                            <div class="img-project"><img src="../img/logos/WordPress-logotype-alternative.png" alt="WordPress" class="logo-skill"></div>
+                            <p>Développeuse</p>
+                        </div>
+                        <p class="id-link">Lien du site : <a href="https://www.etremontagnard.org" target="_blank" class="project-link-formation">www.etremontagnard.org</a></p>
+                        <div>
+                            <h4>Résumé : </h4> 
+                            <p class="summary">Le premier site de l'association n'étant plus actif, l'objectif de ce projet était de repartir de 0 pour faire un nouveau site. Celui-ci devait permettre aux membres du bureau de poster régulièrement des articles ainsi qu'aux membres et personnes externes de se renseigner sur l'association et d'adhérer.</p>
+                        </div>
+                        <hr/>
+                        <h3>Détails du projet</h3>
+                        <div class="project-details">
+                            <h4>Problème</h4>
+                                <p>L'ancien site n'était plus actif et il n'y avait pas de moyen de communiquer sur les activités de l'association.</p>
+                                <p class="details">
+                                    => pas d'hébergement </br>
+                                    => ancien nom de domaine indisponible </br>
+                                </p>
+                                <p>Volonté de visibilité pour l'association. Avoir un point commun où rediriger les gens pour les adhésions, les informations...</p>
+                            <h4>Solutions</h4>
+                            <p>Le projet s'est réalisé en plusieurs étapes : </p>
+                            <ol class="step-list">
+                                <li>Achat d'un nouveau nom de domaine.
+                                    <p class="step-list-details">Recherches pour un nom de domaine qui contienne le nom de l'association, qui ne coûte pas cher à renouveler et dont le gestionnaire soit suffisamment flexible. Il a finalement été choisi <a href="https://www.etremontagnard.org" target="_blank">etremontagnard.org</a></p>
+                                </li>
+                                <li>Création d'une première version du site avec le lien d'adhésion.
+                                    <p class="step-list-details">Choix de réaliser une première version de la page d'accueil en HTML et CSS uniquement. Cela permettait d'avoir une première version rapidement, qui redirige les visiteurs vers les liens d'adhésion ou de don.</p>
+                                    <div class="img-project"><img src="../img/EM/V1_website.jpg" class="project-pictures"/></div>
+                                </li>
+                                <li>Création d'une deuxième version avec la description de l'association.
+                                    <p class="step-list-details">Base visuelle sur le thème WordPress choisi pour le site final. Présence uniquement des pages statiques (sans ajout de contenu de la part des utilisateurs). Tout est encore en HTML/CSS.</p>
+                                    <div class="img-project"><img src="../img/EM/V2_website.jpg" class="project-pictures"/> </div>
+                                </li>
+                                <li>Création de la version finale avec toutes les fonctionnalités.
+                                    <p class="step-list-details">Recherche d'un autre moyen d'hébergement correspondant à la demande (flux de visiteurs, prix...) pouvant accepter des sites dynamiques.</p>
+                                    <p class="step-list-details">Déploiement de la version WordPress, permettant au bureau d'ajouter des articles dans différentes catégories.</p>
+                                    <div class="img-project"><img src="../img/EM/V3_website.jpg" class="project-pictures"></div>
+                                </li>
+                                <li>Rédaction de tutoriel pour que les membres du bureau puissent être indépendants.
+                                    <p class="step-list-details">Mise en page d'un descriptif étape par étape, puis validation de son utilisation.</p>
+                                    <div class="img-project"><img src="../img/EM/tuto.jpg" class="project-pictures"> </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!--Ile aux fractions-->
+                <div class="card card-formation">
+                    <div class="card-title title-formation">
+                        <h3>Site web de Être Montagnard</h3>
+                        <span>X</span>
+                    </div>
+                    <div class="card-project-content">
+                        <h3>En bref</h3>
+                        <div class="project-id">
+                            <p>2025</p>
+                            <div class="img-project"><img src="../img/logos/WordPress-logotype-alternative.png" alt="WordPress" class="logo-skill"></div>
+                            <p>Développeuse</p>
+                        </div>
+                        <p class="id-link">Lien du site : <a href="https://www.etremontagnard.org" target="_blank" class="project-link-formation">www.etremontagnard.org</a></p>
+                        <div>
+                            <h4>Résumé : </h4> 
+                            <p class="summary">Le premier site de l'association n'étant plus actif, l'objectif de ce projet était de repartir de 0 pour faire un nouveau site. Celui-ci devait permettre aux membres du bureau de poster régulièrement des articles ainsi qu'aux membres et personnes externes de se renseigner sur l'association et d'adhérer.</p>
+                        </div>
+                        <hr/>
+                        <h3>Détails du projet</h3>
+                        <div class="project-details">
+                            <h4>Problème</h4>
+                                <p>L'ancien site n'était plus actif et il n'y avait pas de moyen de communiquer sur les activités de l'association.</p>
+                                <p class="details">
+                                    => pas d'hébergement </br>
+                                    => ancien nom de domaine indisponible </br>
+                                </p>
+                                <p>Volonté de visibilité pour l'association. Avoir un point commun où rediriger les gens pour les adhésions, les informations...</p>
+                            <h4>Solutions</h4>
+                            <p>Le projet s'est réalisé en plusieurs étapes : </p>
+                            <ol class="step-list">
+                                <li>Achat d'un nouveau nom de domaine.
+                                    <p class="step-list-details">Recherches pour un nom de domaine qui contienne le nom de l'association, qui ne coûte pas cher à renouveler et dont le gestionnaire soit suffisamment flexible. Il a finalement été choisi <a href="https://www.etremontagnard.org" target="_blank">etremontagnard.org</a></p>
+                                </li>
+                                <li>Création d'une première version du site avec le lien d'adhésion.
+                                    <p class="step-list-details">Choix de réaliser une première version de la page d'accueil en HTML et CSS uniquement. Cela permettait d'avoir une première version rapidement, qui redirige les visiteurs vers les liens d'adhésion ou de don.</p>
+                                    <div class="img-project"><img src="../img/EM/V1_website.jpg" class="project-pictures"/></div>
+                                </li>
+                                <li>Création d'une deuxième version avec la description de l'association.
+                                    <p class="step-list-details">Base visuelle sur le thème WordPress choisi pour le site final. Présence uniquement des pages statiques (sans ajout de contenu de la part des utilisateurs). Tout est encore en HTML/CSS.</p>
+                                    <div class="img-project"><img src="../img/EM/V2_website.jpg" class="project-pictures"/> </div>
+                                </li>
+                                <li>Création de la version finale avec toutes les fonctionnalités.
+                                    <p class="step-list-details">Recherche d'un autre moyen d'hébergement correspondant à la demande (flux de visiteurs, prix...) pouvant accepter des sites dynamiques.</p>
+                                    <p class="step-list-details">Déploiement de la version WordPress, permettant au bureau d'ajouter des articles dans différentes catégories.</p>
+                                    <div class="img-project"><img src="../img/EM/V3_website.jpg" class="project-pictures"></div>
+                                </li>
+                                <li>Rédaction de tutoriel pour que les membres du bureau puissent être indépendants.
+                                    <p class="step-list-details">Mise en page d'un descriptif étape par étape, puis validation de son utilisation.</p>
+                                    <div class="img-project"><img src="../img/EM/tuto.jpg" class="project-pictures"> </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!--Démineur-->
+                <div class="card card-formation">
+                    <div class="card-title title-formation">
+                        <h3>Site web de Être Montagnard</h3>
+                        <span>X</span>
+                    </div>
+                    <div class="card-project-content">
+                        <h3>En bref</h3>
+                        <div class="project-id">
+                            <p>2025</p>
+                            <div class="img-project"><img src="../img/logos/WordPress-logotype-alternative.png" alt="WordPress" class="logo-skill"></div>
+                            <p>Développeuse</p>
+                        </div>
+                        <p class="id-link">Lien du site : <a href="https://www.etremontagnard.org" target="_blank" class="project-link-formation">www.etremontagnard.org</a></p>
+                        <div>
+                            <h4>Résumé : </h4> 
+                            <p class="summary">Le premier site de l'association n'étant plus actif, l'objectif de ce projet était de repartir de 0 pour faire un nouveau site. Celui-ci devait permettre aux membres du bureau de poster régulièrement des articles ainsi qu'aux membres et personnes externes de se renseigner sur l'association et d'adhérer.</p>
+                        </div>
+                        <hr/>
+                        <h3>Détails du projet</h3>
+                        <div class="project-details">
+                            <h4>Problème</h4>
+                                <p>L'ancien site n'était plus actif et il n'y avait pas de moyen de communiquer sur les activités de l'association.</p>
+                                <p class="details">
+                                    => pas d'hébergement </br>
+                                    => ancien nom de domaine indisponible </br>
+                                </p>
+                                <p>Volonté de visibilité pour l'association. Avoir un point commun où rediriger les gens pour les adhésions, les informations...</p>
+                            <h4>Solutions</h4>
+                            <p>Le projet s'est réalisé en plusieurs étapes : </p>
+                            <ol class="step-list">
+                                <li>Achat d'un nouveau nom de domaine.
+                                    <p class="step-list-details">Recherches pour un nom de domaine qui contienne le nom de l'association, qui ne coûte pas cher à renouveler et dont le gestionnaire soit suffisamment flexible. Il a finalement été choisi <a href="https://www.etremontagnard.org" target="_blank">etremontagnard.org</a></p>
+                                </li>
+                                <li>Création d'une première version du site avec le lien d'adhésion.
+                                    <p class="step-list-details">Choix de réaliser une première version de la page d'accueil en HTML et CSS uniquement. Cela permettait d'avoir une première version rapidement, qui redirige les visiteurs vers les liens d'adhésion ou de don.</p>
+                                    <div class="img-project"><img src="../img/EM/V1_website.jpg" class="project-pictures"/></div>
+                                </li>
+                                <li>Création d'une deuxième version avec la description de l'association.
+                                    <p class="step-list-details">Base visuelle sur le thème WordPress choisi pour le site final. Présence uniquement des pages statiques (sans ajout de contenu de la part des utilisateurs). Tout est encore en HTML/CSS.</p>
+                                    <div class="img-project"><img src="../img/EM/V2_website.jpg" class="project-pictures"/> </div>
+                                </li>
+                                <li>Création de la version finale avec toutes les fonctionnalités.
+                                    <p class="step-list-details">Recherche d'un autre moyen d'hébergement correspondant à la demande (flux de visiteurs, prix...) pouvant accepter des sites dynamiques.</p>
+                                    <p class="step-list-details">Déploiement de la version WordPress, permettant au bureau d'ajouter des articles dans différentes catégories.</p>
+                                    <div class="img-project"><img src="../img/EM/V3_website.jpg" class="project-pictures"></div>
+                                </li>
+                                <li>Rédaction de tutoriel pour que les membres du bureau puissent être indépendants.
+                                    <p class="step-list-details">Mise en page d'un descriptif étape par étape, puis validation de son utilisation.</p>
+                                    <div class="img-project"><img src="../img/EM/tuto.jpg" class="project-pictures"> </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                 <!--Mastermind-->
                 <div class="card card-formation">
                     <div class="card-title title-formation">
                         <h3>Site web de Être Montagnard</h3>

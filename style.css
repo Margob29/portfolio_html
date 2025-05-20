@@ -418,12 +418,14 @@ hr{ width: 85%;}
 .project-id{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-}
-.project-id p{
-    text-align: center;
     align-items: center;
 }
-.img-project{ text-align: center; }
+.project-id p{ text-align: center; }
+.img-project{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
 .id-link{ text-align: center; }
 .card-project-content-pro h4, .card-project-content h4{
     font-size: 1.3rem; 
@@ -443,6 +445,11 @@ hr{ width: 85%;}
     margin-top: 5px;
 }
 .project-pictures{ width: 20vw;}
+.project-pictures-small{ 
+    width:10vw;
+    /* max-height: 200px; */
+    margin: 0 5px;
+}
 /* --------------------- Formation -------------------- */
 .project-link-formation{ 
     text-decoration: underline;
