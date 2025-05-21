@@ -51,7 +51,7 @@
             </div>
             <div class="contact-form">
                 <h2>Formulaire de contact</h2>
-                <form>
+                <form method="post">
                     <div class="form-content">
                         <label for="name">Nom et prénom *</label>
                         <input type="text" id="name" name="name" required placeholder="Ex: Margo Biret">
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     <div class="form-content">
-                        <label for="message">Site existant</label>
+                        <label for="url">Site existant</label>
                         <p>Vous avez déjà un site ? Je peux aller voir de quoi vous parlez !</p>
                         <input type="url" id="url" name="url" placeholder="Url de votre site (ex: https://www.votresite.fr)"></textarea>
                     </div>
@@ -139,6 +139,81 @@
         else {
             submitBtn.classList.add("disabled");
             console.log("invalid");
+        }
+
+        const form = document.forms[0]
+        const emailEl = form["email"]
+        const nameEl = form["name"]
+        const companyEl = form["company"]
+        const telEl = form["telephone"]
+        const websiteEl = form["url"]
+        const messageEl = form["message"]
+
+        form.addEventListener("submit", (event) => {
+            const name = nameEl.value
+            const email = emailEl.value
+            const company = companyEl.value
+            const tel = telEl.value
+            const website = websiteEl.value
+            const message = messageEl.value
+
+            const subject = "[PORTFOLIO] Demande de contact de " + name + " @ " + company
+            // TODO put in sperate file and build in a function (with indexed param ?)
+            const content =
+                `
+Coucou Margo,
+
+${name} ${company ? "de chez " + company : ""} vous a contacté sur votre portfolio.
+
+Informations:
+${email ? "\t- email: " + email + "\n" : ""}${tel ? "\t- numéro: " + tel + "\n" : ""}${website ? "\t- site web: " + website + "\n" : ""}
+
+Avec le message suivant:
+"
+${message}
+"
+            
+
+
+mail envoyé automatiquement, ne pas répondre
+            
+bisous <3
+`
+            // Stop request from being sent
+            event.preventDefault()
+
+            // We're sending our own custom request
+            sendmail(subject, content)
+                .then(res => {
+                    form.reset()
+                    alert(res)
+                })
+                .catch(err => {
+                    alert("Error occured, please try again later or contact the site admin")
+                    console.log("error", err)
+                })
+        })
+
+        async function sendmail(subject, content) {
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", "Bearer 332d68fa-7a3b-4cdd-af01-12e9648d9bec");
+
+            var formdata = new FormData();
+            formdata.append("to", "hugodec@free.fr");
+            formdata.append("subject", subject);
+            formdata.append("content", content);
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: formdata,
+            };
+
+            return fetch("http://89.168.60.207:8080/send", requestOptions)
+                .then(response => response.text())
+            // .then(result =>
+            //     console.log(result))
+            // .catch(error => console.log('error', error));
         }
     </script>
 </body>
