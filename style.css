@@ -379,6 +379,10 @@ form{
     font-size: 1rem;
     margin-top: 5px;
     font-family: 'Sniglet', sans-serif;
+
+    &:user-invalid {
+        border-color: red;
+    }
 }
 ::placeholder{
     color: #8B5B1A;
