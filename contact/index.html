@@ -51,7 +51,7 @@
             </div>
             <div class="contact-form">
                 <h2>Formulaire de contact</h2>
-                <form>
+                <form method="post">
                     <div class="form-content">
                         <label for="name">Nom et prénom *</label>
                         <input type="text" id="name" name="name" required placeholder="Ex: Margo Biret">
@@ -66,18 +66,20 @@
                             <!-- <input type="checkbox" id="email" name="mail" value="email"> -->
                             <label for="email"><input type="email" id="email" name="email" placeholder="Adresse mail"></label>
                             <!-- <input type="checkbox" id="phone" name="phone" value="phone"> -->
-                            <input type="phone" id="telephone" name="telephone" placeholder="Numéro de téléphone">
+                            <input type="tel" id="telephone" name="telephone" placeholder="Numéro de téléphone">
                         </div>
                     </div>
                     <div class="form-content">
-                        <label for="message">Site existant</label>
+                        <label for="url">Site existant</label>
                         <p>Vous avez déjà un site ? Je peux aller voir de quoi vous parlez !</p>
                         <input type="url" id="url" name="url" placeholder="Url de votre site (ex: https://www.votresite.fr)"></textarea>
                     </div>
                     <div class="form-content">
                         <label for="message">Votre message *</label>
-                        <p>Des questions sur ce qu'il est possible de faire ? Un devis pour votre projet ? Une idée déjà en tête ?</p>
-                        <textarea id="message" name="message" rows="4" placeholder="N'hésitez pas à détailler !"></textarea>
+                        <p>Des questions sur ce qu'il est possible de faire ? Un devis pour votre projet ? Une idée déjà
+                            en tête ?</p>
+                        <textarea id="message" name="message" rows="4" placeholder="N'hésitez pas à détailler !"
+                            required></textarea>
                         <p style="margin-top: 10px;">* obligatoires</p>
                     </div>
                     <div class="form-btn">
@@ -127,18 +129,109 @@
             navLinks.classList.toggle('active');
         });
 
-        //Check validity of contact
-        const numIsValid = document.querySelector("#telephone").checkValidity();
-        const emailIsValid = document.querySelector("#email").checkValidity();
-        const submitBtn = document.querySelector("[type=submit]");
+        var form = document.forms[0]
+        var emailEl = form["email"]
+        var nameEl = form["name"]
+        var companyEl = form["company"]
+        var telEl = form["telephone"]
+        var websiteEl = form["url"]
+        var messageEl = form["message"]
 
-        if(numIsValid || emailIsValid) {
-            submitBtn.classList.remove("disabled");
-            console.log("valid");
+        // Mark as invalid by default and set custom error message
+        emailEl.setCustomValidity("Veuillez saisir ce champs ou un numéro de téléphone")
+        telEl.setCustomValidity("Veuillez saisir ce champs ou une addresse email")
+
+        function checkEmailAndPhoneValidity() {
+            // Reset custom validity to check default validity first
+            telEl.setCustomValidity("")
+            emailEl.setCustomValidity("")
+
+            // Check validity of contact
+            const numIsValid = telEl.checkValidity() && telEl.value.length > 0;
+            const emailIsValid = emailEl.checkValidity() && emailEl.value.length > 0;
+            // Phone validity is kind of useless (no real check) so checking length > 0 is enough
+            // Maybe add some custom phone validity check instead
+
+            // If one is valid, let both as valid and return
+            if (numIsValid || emailIsValid) {
+                return
+            }
+            // Else mark both as invalid with custom error message
+            const msg = "Entrer au moins l'un de ces deux champs"
+            telEl.setCustomValidity(msg)
+            emailEl.setCustomValidity(msg)
         }
-        else {
-            submitBtn.classList.add("disabled");
-            console.log("invalid");
+
+        emailEl.addEventListener("input", (e) => checkEmailAndPhoneValidity())
+        telEl.addEventListener("input", (e) => checkEmailAndPhoneValidity())
+
+
+
+        // Intercept form submit event
+        form.addEventListener("submit", (event) => {
+            // Stop request from being sent
+            event.preventDefault()
+
+            const name = nameEl.value
+            const email = emailEl.value
+            const company = companyEl.value
+            const tel = telEl.value
+            const website = websiteEl.value
+            const message = messageEl.value
+
+            const subject = "[PORTFOLIO] Demande de contact de " + name + " @ " + company
+            // TODO put in sperate file and build in a function (with indexed param ?)
+            const content =
+                `
+Coucou Margo,
+
+${name} ${company ? "de chez " + company : ""} vous a contacté sur votre portfolio.
+
+Informations:
+${email ? "\t- email: " + email + "\n" : ""}${tel ? "\t- numéro: " + tel + "\n" : ""}${website ? "\t- site web: " + website + "\n" : ""}
+
+Avec le message suivant:
+"
+${message}
+"
+            
+
+
+mail envoyé automatiquement, ne pas répondre
+            
+bisous <3
+`
+
+            // We're sending our own custom request
+            sendmail(subject, content)
+                .then(res => {
+                    form.reset()
+                    alert(res) // Do something to tell the user it worked
+
+                })
+                .catch(err => {
+                    alert("Error occured, please try again later or contact the site admin")
+                    console.log("error", err)
+                })
+        })
+
+        async function sendmail(subject, content) {
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", "Bearer 332d68fa-7a3b-4cdd-af01-12e9648d9bec");
+
+            var formdata = new FormData();
+            formdata.append("to", "[email_address]");
+            formdata.append("subject", subject);
+            formdata.append("content", content);
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: formdata,
+            };
+
+            return fetch("http://89.168.60.207:8080/send", requestOptions)
+                .then(response => response.text())
         }
     </script>
 </body>
